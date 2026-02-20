@@ -107,7 +107,10 @@ public class ChatCoordinatorTests
         var response = coordinator.CreateChatSession();
 
         Assert.NotEqual(ChatSessionStatus.Refused, response.Status);
-        Assert.Equal("OK", response.Message);
+        Assert.True(
+                response.Message == "You are now connected to an agent." ||
+                response.Message == "You are in the queue. Please wait.",
+                $"Unexpected message: {response.Message}");
     }
 
     [Fact]
@@ -152,4 +155,5 @@ public class ChatCoordinatorTests
 
         Assert.Equal(ChatSessionStatus.Inactive, pollResponse.Status);
     }
+
 }
