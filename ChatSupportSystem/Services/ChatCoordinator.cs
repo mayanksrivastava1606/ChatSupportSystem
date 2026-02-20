@@ -106,8 +106,8 @@ public class ChatCoordinator
             _assignmentService.AssignNextChat(_chatQueue, _allAgents);
 
             string message = session.Status == ChatSessionStatus.Active
-                ? "OK"
-                : "OK";
+                            ? "You are now connected to an agent."
+                            : "You are in the queue. Please wait.";
 
             return new CreateChatResponse(session.Id, session.Status, message);
         }
@@ -128,4 +128,5 @@ public class ChatCoordinator
 
         return new PollResponse(session.Id, session.Status, "OK");
     }
+
 }
